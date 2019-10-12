@@ -235,3 +235,14 @@ describe.skip("A file with a BOM and a <meta charset> of x-user-defined", () => 
     assert.strictEqual(sniffedEncoding, "windows-1252");
   });
 });
+
+
+describe("A file with short comment and a <meta charset>", () => {
+  const buffer = read("zzz-short-comment.html");
+
+  it("should sniff as the charset value, given no options", () => {
+    const sniffedEncoding = htmlEncodingSniffer(buffer);
+
+    assert.strictEqual(sniffedEncoding, "ISO-8859-2");
+  });
+});
